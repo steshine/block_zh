@@ -1,0 +1,30 @@
+{
+  "name": "block_zh",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "block_zh_privacy",
+  "icons" : {           // 扩展的icon
+    "16" : "icon.png",
+    "48" : "icon.png",
+    "128" : "icon.png"
+  },
+  "browser_action": {
+    "default_title": "Set this page's color.",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts":[
+    {
+      "matches": ["http://www.zhihu.com/*", "https://www.zhihu.com/*","https://zhuanlan.zhihu.com/*"],
+      // 多个JS按顺序注入
+      "js": ["jquery-3.3.1.min.js","pop.js"],
+      // 代码注入的时间，可选值： "document_start", "document_end", or "document_idle"，最后一个表示页面空闲时，默认document_idle
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [   //一些权限的配置，
+    "cookies",       //比如cookie权限，比如系统通知权限，类似于notify这样的东西，在window系统上未右下角的小气泡
+    "notifications",
+    "storage","activeTab"
+  ]
+}
